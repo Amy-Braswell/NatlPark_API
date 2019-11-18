@@ -1,0 +1,65 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Roboto', sans-serif;
+  }
+  
+
+  input[type=number] {
+      width:55px;
+  }
+  
+  button, input[type="text"] {
+    padding: 5px;
+    margin-top: 20px;
+    width: 60px;
+  }
+  
+  button:hover {
+    cursor: pointer;
+  }
+
+  h2 {
+    margin: 3vh 0;
+  }
+
+  h3{
+    margin: 0 0 -2vh;
+  }
+
+  label {
+    font-size: .8em;
+  }
+
+  .style-label {
+      margin-top: 20px;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  li {
+    padding: 5px;
+  }
+  
+  li, img {
+    max-width: 500px;
+  }
+  
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .error-message {
+      color: red;
+  }
+  
+  .hidden {
+    display: none;
+  }
