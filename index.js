@@ -1,22 +1,21 @@
-// GET "https://developer.nps.gov/api/v1/parks?stateCode=IL"
 
-https://www.nps.gov/subjects/developer/api-documentation.htm#/parks/getPark
+
 
 // api Auth Header:
-//curl -H 'X-Api-Key: INSERT-API-KEY-HERE' 'https://developer.nps.gov/api/v1/parks?parkCode=acad'
+//curl -H 'X-Api-Key: KFzjIXeflsLaqnKagKQ3wT4KeZPhpIkD3HaFaaKn' 'https://developer.nps.gov/api/v1/parks'
 
+// RETURN
 // data.fullName
 // data.description
-// url
+// data.url
 
-
-//curl 'https://KFzjIXeflsLaqnKagKQ3wT4KeZPhpIkD3HaFaaKn@developer.nps.gov/api/v1/parks?parkCode=acad'
 
 'use strict';
 
 // right now apiKey is built into url - put in header eventually
-//const apiKey = 'KFzjIXeflsLaqnKagKQ3wT4KeZPhpIkD3HaFaaKn'; 
-const searchURL = 'https://KFzjIXeflsLaqnKagKQ3wT4KeZPhpIkD3HaFaaKn@developer.nps.gov/api/v1/parks';
+const apiKey = 'KFzjIXeflsLaqnKagKQ3wT4KeZPhpIkD3HaFaaKn'; 
+const searchURL = 'https://developer.nps.gov/api/v1/parks';
+
 
 
 function formatQueryParams(params) {
@@ -25,12 +24,14 @@ function formatQueryParams(params) {
   return queryItems.join('&');
 }
 
-function getParksByState(query, maxResults=10) {
+function getParksByState(query, maxResults=10, api_key,) {
   const params = {
-    q: query,
-    maxResults
+    stateCode: query,
+    maxResults,
+    api_key: apiKey
   };
-  const queryString = formatQueryParams(params)
+
+  const queryString = formatQueryParams(params);
   const url = searchURL + '?' + queryString;
   console.log({url, params});  // self-commenting "url: url params: param"
 
@@ -40,8 +41,8 @@ function getParksByState(query, maxResults=10) {
       "X-Api-Key": apiKey})
   };
   */
-
-  fetch(url, options)
+  
+  fetch(url)
     .then(response => {
       if (response.ok) {
         return response.json();
@@ -61,11 +62,11 @@ function watchForm() {
     const searchState = $('#js-search-state').val();
     const maxResults = $('#js-max-results').val();
     getParksByState(searchState, maxResults);
-    console.log(searchState);
-    console.log(maxResults);
+    console.log({searchState});
+    console.log({maxResults});
   });
 }
 
-console.log(responseJson);
+
 
 $(watchForm);
