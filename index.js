@@ -46,7 +46,7 @@ function displayResults(responseJson) {
       // list with the repo title and link to the repo
         $('#results-list').append(
           `<li>
-              <h3>${responseJson.data[i].fullName}:</h3><p>${responseJson.data[i].description}</br><a href="${responseJson.data[i].url}" target="#">${responseJson.data[i].url}</a></p>
+              <h3>${responseJson.data[i].fullName}</h3><p>${responseJson.data[i].description}</br><a href="${responseJson.data[i].url}" target="#">${responseJson.data[i].url}</a></p>
           </li>`
         )};
     
