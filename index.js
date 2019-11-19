@@ -10,11 +10,13 @@ https://www.nps.gov/subjects/developer/api-documentation.htm#/parks/getPark
 // url
 
 
+//curl 'https://KFzjIXeflsLaqnKagKQ3wT4KeZPhpIkD3HaFaaKn@developer.nps.gov/api/v1/parks?parkCode=acad'
+
 'use strict';
 
-
-const apiKey = 'KFzjIXeflsLaqnKagKQ3wT4KeZPhpIkD3HaFaaKn'; 
-const searchURL = 'https://developer.nps.gov/api/v1/parks';
+// right now apiKey is built into url - put in header eventually
+//const apiKey = 'KFzjIXeflsLaqnKagKQ3wT4KeZPhpIkD3HaFaaKn'; 
+const searchURL = 'https://KFzjIXeflsLaqnKagKQ3wT4KeZPhpIkD3HaFaaKn@developer.nps.gov/api/v1/parks';
 
 
 function formatQueryParams(params) {
@@ -30,12 +32,14 @@ function getParksByState(query, maxResults=10) {
   };
   const queryString = formatQueryParams(params)
   const url = searchURL + '?' + queryString;
-  console.log(url);
+  console.log({url, params});  // self-commenting "url: url params: param"
 
+  /*
   const options = {
     headers: new Headers({
       "X-Api-Key": apiKey})
   };
+  */
 
   fetch(url, options)
     .then(response => {
@@ -51,12 +55,17 @@ function getParksByState(query, maxResults=10) {
 }
 
 function watchForm() {
+    console.log("watchForm ran");
   $('form').submit(event => {
     event.preventDefault();
     const searchState = $('#js-search-state').val();
     const maxResults = $('#js-max-results').val();
     getParksByState(searchState, maxResults);
+    console.log(searchState);
+    console.log(maxResults);
   });
 }
+
+console.log(responseJson);
 
 $(watchForm);
